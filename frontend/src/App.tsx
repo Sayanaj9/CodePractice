@@ -8,7 +8,6 @@ function App() {
   const allQuestionList = useAppSelector(
     (state) => state.questionsList.questions
   )
-  console.log(allQuestionList)
 
   return (
     <Routes>

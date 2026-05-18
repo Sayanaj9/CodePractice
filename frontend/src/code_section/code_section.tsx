@@ -1,11 +1,10 @@
 import Question from "./question"
 import Testcase from "./testcase"
-import Code from "./code"
+import EditorScreen from "./editor_screen"
 import { useAppSelector } from "../store/hooks"
 
 function CodeSection() {
 const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.questionSelected)
-console.log("editor,",questionSelectedByUser)
   return (
 
  <div className="h-screen bg-[#007FFF] flex flex-col">
@@ -15,13 +14,13 @@ console.log("editor,",questionSelectedByUser)
         </div>
         <div className='grid grid-cols-12 gap-4 p-4 flex-1 overflow-auto'>
                     
-                    <div className='col-span-4 bg-white p-4 rounded-xl text-black-500 font-bold'>
+                    <div className='col-span-3 bg-white p-4 rounded-xl text-black-500 font-bold'>
                        <Question questionSelectedByUser={questionSelectedByUser}/>
                     </div>
                     <div className='col-span-5 bg-white p-4 rounded-xl text-black-500 font-bold'>
-                         <Code  questionSelectedByUser={questionSelectedByUser}/>
+                         <EditorScreen  questionSelectedByUser={questionSelectedByUser}/>
                     </div>
-                    <div className='col-span-3 bg-white p-4 rounded-xl text-black-500 font-bold'>
+                    <div className='col-span-4 bg-white p-4 rounded-xl text-black-500 font-bold'>
                          <Testcase  questionSelectedByUser={questionSelectedByUser}/>
                     </div>
         </div>
