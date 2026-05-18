@@ -1,27 +1,31 @@
 import Question from "./question"
 import Testcase from "./testcase"
 import Code from "./code"
+import { useAppSelector } from "../store/hooks"
 
 function CodeSection() {
-
+const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.questionSelected)
+console.log("editor,",questionSelectedByUser)
   return (
-  <div className="h-screen bg-gray-200 flex flex-col">
-        <div className="h-20 p-4"></div>
+
+ <div className="h-screen bg-[#007FFF] flex flex-col">
+        <div className="h-20 bg-#007FFF] flex flex-col items-center justify-center">
+
+            <div className='text-white text-3xl font-bold'>Code Practise</div> 
+        </div>
         <div className='grid grid-cols-12 gap-4 p-4 flex-1 overflow-auto'>
                     
-                   
-                   
                     <div className='col-span-4 bg-white p-4 rounded-xl text-black-500 font-bold'>
-                       <Question/>
+                       <Question questionSelectedByUser={questionSelectedByUser}/>
                     </div>
                     <div className='col-span-5 bg-white p-4 rounded-xl text-black-500 font-bold'>
-                         <Code/>
+                         <Code  questionSelectedByUser={questionSelectedByUser}/>
                     </div>
                     <div className='col-span-3 bg-white p-4 rounded-xl text-black-500 font-bold'>
-                         <Testcase/>
+                         <Testcase  questionSelectedByUser={questionSelectedByUser}/>
                     </div>
         </div>
-   </div>
+   </div> 
     
   )
 }

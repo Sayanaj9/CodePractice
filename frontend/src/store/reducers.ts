@@ -13,10 +13,16 @@ const questionSlice=createSlice({
     name:"questions",
     initialState: {
         questions: [],
+        questionSelected: null,
         loading: false,
         error: null as string | null,
     },
-    reducers:{},
+    reducers:{
+        selectedQuestion:(state,action)=>{
+            state.questionSelected=action?.payload; 
+
+        }
+    },
      extraReducers: (builder) => {
             builder.addCase(fetchQuestions.fulfilled, (state, action) => {
                        state.loading = false;
@@ -32,5 +38,6 @@ const questionSlice=createSlice({
   },
 })
 
+export const {selectedQuestion}=questionSlice.actions
 
 export default questionSlice.reducer
