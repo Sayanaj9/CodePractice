@@ -5,7 +5,8 @@ type QuestionType={
         "title": string,
         "description": string,
         "difficulty": string,
-        "category_id": number
+        "category_id": number,
+        "starter_code":string
 }
 type QuestionProps={
   questionSelectedByUser:QuestionType|null;
@@ -30,7 +31,7 @@ function EditorScreen({questionSelectedByUser}:QuestionProps) {
                     }
                   }}
                   defaultLanguage="javascript"
-                  defaultValue="// Write your code here"
+                  defaultValue={questionSelectedByUser?.starter_code}
                   theme="vs-dark"
                   onChange={handleEditorChange}
               />
