@@ -24,9 +24,13 @@ app.get("/api/questions",async (req,res)=>{
    const questions= await pool.query("SELECT * FROM questions")
    res.json(questions.rows)
 })
+//get all testcases
+app.get("/api/testcases",async (req,res)=>{
+   const testcases= await pool.query("SELECT * FROM test_cases")
+   res.json(testcases.rows)
+})
 
-
-
+//test user submitted code against the available testcases
 app.post("/api/testcode", async (req, res) => {
 
    const { questionId, code } = req.body;
