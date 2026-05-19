@@ -23,16 +23,6 @@ const navigate=useNavigate()
   
   const [sortBy, setSortBy] = useState<'questions' | 'difficulty' | 'category'>('questions')
 
-//   const sortedQuestions = [...(allQuestionList || [])].sort((a, b) => {
-//     if (sortBy === 'questions') {
-//       return a.title.localeCompare(b.title)
-//     } else if (sortBy === 'difficulty') {
-//       return a.difficulty.localeCompare(b.difficulty)
-//     } else if (sortBy === 'category') { 
-//       return a.category.localeCompare(b.category)
-//     }
-//     return 0
-//   })
 
   return (
     <div className="h-screen p-4">

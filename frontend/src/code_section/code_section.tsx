@@ -11,7 +11,7 @@ const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.quest
         <div className="h-20 bg-#007FFF] flex items-center p-5 justify-between">
 
             <div className='text-white text-3xl font-bold'>Code Practise</div> 
-            <button className="text-black h-10 w-24 bg-white rounded-xl font-bold">Run</button>
+            <button className="text-black h-10 w-24 bg-white rounded-xl font-bold" >Run</button>
         </div>
         <div className='grid grid-cols-12 gap-4 p-4 flex-1 overflow-auto'>
                     
