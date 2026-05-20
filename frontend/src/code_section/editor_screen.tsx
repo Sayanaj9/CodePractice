@@ -1,5 +1,7 @@
 import Editor from '@monaco-editor/react';
-import { useState } from 'react';
+import {setTypedCode} from '../store/reducers'
+import { useAppDispatch } from "../store/hooks";
+
 type QuestionType={
     "id": number,
         "title": string,
@@ -13,9 +15,11 @@ type QuestionProps={
 }
 
 function EditorScreen({questionSelectedByUser}:QuestionProps) {
-  const [typedCode,setTypedCode]=useState(null)
+  const dispatch=useAppDispatch()
+  
   const handleEditorChange=(data:any)=>{
-    setTypedCode(data)
+   dispatch(setTypedCode(data))
+
   }
   return (
 

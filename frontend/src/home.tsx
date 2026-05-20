@@ -4,6 +4,7 @@ import { useAppSelector,useAppDispatch } from "./store/hooks";
 import { fetchQuestions } from "./store/reducers"
 import { useNavigate } from "react-router-dom";
 import {selectedQuestion} from'./store/reducers';
+import type { QuestionType } from "./store/reducers";
 function Home() {
 const dispatch=useAppDispatch()
 const navigate=useNavigate()
@@ -15,15 +16,11 @@ const navigate=useNavigate()
     (state) => state.questionsList.questions
   )
   
-  const handleQuestionSelection=(question:number)=>{
+  const handleQuestionSelection=(question:QuestionType)=>{
     dispatch(selectedQuestion(question))
     navigate("/editor")
-
   }
   
-  const [sortBy, setSortBy] = useState<'questions' | 'difficulty' | 'category'>('questions')
-
-
   return (
     <div className="h-screen p-4">
         <div className="h-20 bg-[#007FFF] flex flex-col items-center justify-center mb-4">
@@ -31,26 +28,23 @@ const navigate=useNavigate()
             <div className='text-white p-2 text-3xl font-bold '>Code Practise</div> 
         </div>
       
-      <div className="mb-4 flex gap-2">
+      {/* <div className="mb-4 flex gap-2">
         <button 
-          onClick={() => setSortBy('questions')}
-          className={`px-4 py-2 rounded ${sortBy === 'questions' ? 'bg-indigo-500 text-white font-medium' : 'bg-gray-200 text-black font-medium'}`}
+          className={'px-4 py-2 rounded bg-gray-200 text-black font-medium'}
         >
           Sort by Questions
         </button>
         <button 
-          onClick={() => setSortBy('difficulty')}
-          className={`px-4 py-2 rounded ${sortBy === 'difficulty' ? 'bg-indigo-500 text-white font-medium' : 'bg-gray-200 text-black font-medium'}`}
+          className={`px-4 py-2 rounded bg-gray-200 text-black font-medium`}
         >
           Sort by Difficulty
         </button>
         <button 
-          onClick={() => setSortBy('category')}
-          className={`px-4 py-2 rounded ${sortBy === 'category' ? 'bg-indigo-500 text-white font-medium' : 'bg-gray-200 text-black font-medium'}`}
+          className={`px-4 py-2 roundedbg-gray-200 text-black font-medium`}
         >
           Sort by Category
         </button>
-      </div>
+      </div> */}
 
       <table className="w-full border-collapse border border-gray-300">
         <thead>

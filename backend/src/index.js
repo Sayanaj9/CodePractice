@@ -36,7 +36,7 @@ app.post("/api/testcode", async (req, res) => {
    const { questionId, code } = req.body;
 
    const testcases = await pool.query(
-      `SELECT input, expected_output
+      `SELECT input, expected_output,id,is_hidden
        FROM test_cases
        WHERE question_id = $1`,
       [questionId]
@@ -50,7 +50,6 @@ app.post("/api/testcode", async (req, res) => {
    );
 
    const testCasesOfSelectedQuestion = testcases.rows;
-
    const functionNameOfSelectedQuestion =
       functionName.rows[0].function_name;
 
@@ -76,9 +75,10 @@ app.post("/api/testcode", async (req, res) => {
             input: parsedInput,
             expectedOutput,
             actualOutput,
+            id:testCase.id,
+            is_hidden:testCase?.is_hidden,
             passed
          });
-
       }
 
       catch (error) {
@@ -87,6 +87,7 @@ app.post("/api/testcode", async (req, res) => {
             input: parsedInput,
             expectedOutput,
             error: error.message,
+            id,is_hidden,
             passed: false
          });
 

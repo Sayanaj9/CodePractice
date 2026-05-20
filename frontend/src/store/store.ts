@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import questionsReducer from './reducers'
+import reducers from './reducers'
+
 export const store = configureStore({
-  reducer: {
-    questionsList:questionsReducer
-  },
+  reducer: reducers,
 })
 
 export type RootState = ReturnType<typeof store.getState>;
