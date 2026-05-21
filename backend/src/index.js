@@ -1,3 +1,5 @@
+
+
 require("dotenv").config()
 
 const  express=require("express")
@@ -5,6 +7,7 @@ const cors=require("cors")
 const port=process.env.PORT || 5000
 const app= express()
 const pool=require("./db")
+const client=require('./services/ai')
 app.use(cors())
 app.use(express.json())
 app.get("/",(req,res)=>{
@@ -96,4 +99,36 @@ app.post("/api/testcode", async (req, res) => {
 
    res.json(results);
 
+});
+
+
+app.get("/api/ai-test", async (req, res) => {
+  const completion = await client.chat.completions.create({
+    model: "openrouter/free",
+    messages: [
+      {
+        role: "system",
+        content: "You are a DSA interviewer who analyzes code complexity",
+      },
+      {
+      role: "user",
+      content: `
+               Analyze this code.
+
+               Return ONLY:
+
+               Time Complexity:
+               Space Complexity:
+               Explanation:
+
+               Code:
+               ${code}
+               `,
+                  },
+    ],
+  });
+
+  res.json({
+   analysis: completion.choices[0].message.content
+});
 });
