@@ -102,15 +102,16 @@ app.post("/api/testcode", async (req, res) => {
 });
 
 
-app.get("/api/ai-test", async (req, res) => {
+app.post("/api/ai-test", async (req, res) => {
+  const {code}=req.body;
   const completion = await client.chat.completions.create({
-    model: "openrouter/free",
-    messages: [
-      {
-        role: "system",
-        content: "You are a DSA interviewer who analyzes code complexity",
-      },
-      {
+  model: "openrouter/free",
+   messages: [
+   {
+      role: "system",
+      content: "You are a DSA interviewer who analyzes code complexity",
+   },
+   {
       role: "user",
       content: `
                Analyze this code.
@@ -123,9 +124,9 @@ app.get("/api/ai-test", async (req, res) => {
 
                Code:
                ${code}
-               `,
+               `
                   },
-    ],
+   ],
   });
 
   res.json({
