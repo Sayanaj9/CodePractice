@@ -1,5 +1,5 @@
 
-import { useState,useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAppSelector,useAppDispatch } from "./store/hooks";
 import { fetchQuestions } from "./store/reducers"
 import { useNavigate } from "react-router-dom";

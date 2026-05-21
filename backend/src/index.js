@@ -104,6 +104,7 @@ app.post("/api/testcode", async (req, res) => {
 
 app.post("/api/ai-test", async (req, res) => {
   const {code}=req.body;
+  console.log("-----",code)
   const completion = await client.chat.completions.create({
   model: "openrouter/free",
    messages: [
@@ -115,13 +116,14 @@ app.post("/api/ai-test", async (req, res) => {
       role: "user",
       content: `
                Analyze this code.
-
-               Return ONLY:
-
+               Return EXACTLY in this format:
                Time Complexity:
+
                Space Complexity:
+
                Explanation:
 
+               Do not include the code again.
                Code:
                ${code}
                `

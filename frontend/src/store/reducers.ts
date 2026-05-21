@@ -81,7 +81,7 @@ const testcodeSlice=createSlice({
             builder.addCase(postTestcode.pending, (state) => {
                        state.loading = true;
             }),
-            builder.addCase(postTestcode.rejected, (state,action) => {
+            builder.addCase(postTestcode.rejected, (state) => {
                        state.loading = false;
                        state.error = "Failed to fetch questions";
             })

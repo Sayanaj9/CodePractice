@@ -29,7 +29,7 @@ const handleRunBtn=()=>{
 
             <div className='text-white text-3xl font-bold'>Code Practise</div> 
             <button className="text-black h-10 w-24 bg-white rounded-xl font-bold cursor-pointer" onClick={handleRunBtn}
-            cursor-pointer>Run</button>
+            >Run</button>
         </div>
         <div className='grid grid-cols-12 gap-4 p-4 flex-1 overflow-auto'>
                     
@@ -40,7 +40,7 @@ const handleRunBtn=()=>{
                          <EditorScreen  questionSelectedByUser={questionSelectedByUser}/>
                     </div>
                     <div className='col-span-4 bg-white p-4 rounded-xl text-black-500 font-bold'>
-                         <Testcase  questionSelectedByUser={questionSelectedByUser}/>
+                         <Testcase />
                     </div>
         </div>
    </div> 
