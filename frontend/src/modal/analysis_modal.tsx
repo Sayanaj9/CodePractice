@@ -12,7 +12,7 @@ const AnalysisModal: React.FC<AnalysisModalProps> = ({ open, onClose, analysisDa
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/20 backdrop-blur-[2px]">
         <div className="bg-white flex flex-col items-center rounded-2xl shadow-lg w-[50vw] min-h-[300px] max-h-[80vh] overflow-y-auto p-4 relative">
-                <button className="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl font-bold cursor-pointer" onClick={onClose} >
+                <button className="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl font-bold cursor-pointer" data-testid="modal_close_btn" onClick={onClose} >
                 &times;
                 </button>
                 <div className="text-lg font-bold mb-4"> ✨ Powered By AI</div>

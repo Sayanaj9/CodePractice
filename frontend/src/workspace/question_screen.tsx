@@ -1,5 +1,5 @@
 
-function Question({questionSelectedByUser}:QuestionProps) {
+function QuestionScreen({questionSelectedByUser}:QuestionProps) {
 
   return (
 
@@ -25,6 +25,6 @@ type QuestionType={
 type QuestionProps={
   questionSelectedByUser:QuestionType|null;
 }
-export default Question
+export default QuestionScreen
 
 

@@ -147,7 +147,7 @@ const initialCode=questionSelectedByUser?.starter_code;
                       </div>}
                   </div>
                   {showMessages&&
-                      <button className="font-semibold bg-[#007FFF] h-10 p-2 text-white cursor-pointer rounded-xl mt-4 hover:bg-[#0066CC] transition-all duration-200 shadow-sm hover:shadow-md" onClick={handleAnalysisModal}>
+                      <button data-testid="analyze_modal_tigger_btn" className="font-semibold bg-[#007FFF] h-10 p-2 text-white cursor-pointer rounded-xl mt-4 hover:bg-[#0066CC] transition-all duration-200 shadow-sm hover:shadow-md" onClick={handleAnalysisModal}>
                           ✨ Analyze Complexity
                       </button>
                   }

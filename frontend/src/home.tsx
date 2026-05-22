@@ -25,7 +25,7 @@ const navigate=useNavigate()
     <div className="h-screen p-4">
         <div className="h-20 bg-[#1F93CC] flex flex-col items-center justify-center mb-4">
 
-            <div className='text-white p-2 text-3xl font-bold '>Code Practise</div> 
+            <div className='text-white p-2 text-3xl font-bold '>CodePractice</div> 
         </div>
       
 
