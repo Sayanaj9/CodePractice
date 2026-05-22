@@ -13,7 +13,14 @@ function Testcase() {
   const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.questionSelected)
 const initialCode=questionSelectedByUser?.starter_code;
   useEffect(()=>{
-     fetch('/api/testcases').then((res)=>res.json()
+     fetch('/api/testcases',{
+      method:"POST",
+      headers:{
+          "Content-Type":"application/json"
+        },
+      body:JSON.stringify({questionId:questionSelectedByUser?.id})
+      
+     }).then((res)=>res.json()
      .then((data)=>{
       const availableTestCases=data.filter((test:any)=>!test?.is_hidden)
       setTestCases(availableTestCases)
@@ -22,7 +29,6 @@ const initialCode=questionSelectedByUser?.starter_code;
 
     let passedNonHiddenTestcases=[]
     let nonHiddenTestCaseResults=[]
-
     const getVisibleTestcaseResult=(id:number)=>{
           nonHiddenTestCaseResults=testCodeResults.filter((test:any)=>!test?.is_hidden)
           passedNonHiddenTestcases=nonHiddenTestCaseResults.filter((res)=>res.passed)
@@ -74,65 +80,77 @@ const initialCode=questionSelectedByUser?.starter_code;
               else{
                          code=typedCode
               }
-
-      const response=await fetch('/api/ai-test',{
+      try{
+        const response=await fetch('/api/ai-test',{
         method:"POST",
-          headers: {
+        headers: {
             "Content-Type": "application/json"
          },
-        body:JSON.stringify({code})
-      })
-      const data=await response.json();
-            setLoader(false)
+            body:JSON.stringify({code})
+          })
+          if (!response.ok) {
+                throw new Error("AI request failed");
+            }
+          const data=await response.json();
+                setLoader(false)
 
-      setAnalysis(data?.analysis);
+          setAnalysis(data?.analysis);
+      }
+      catch (error) {
+            setAnalysis("Failed to analyze code.")  
+        }
+        finally {
+
+                    setLoader(false);
+
+      }
     
     }
 
-    console.log({analysis})
   return (
 
-        <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between">
+        <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
+                <div className="flex items-center justify-center">
                   <div className="text-black h-10 text-xl">TestCases</div>
 
                 </div>
+
+                {/* ----------------------- Analysis Modal -------------------------------*/}
                 <AnalysisModal open={openModal} onClose={() => setOpenModal(false)} analysisData={analysis} loader={loader}/>
-                <div className="flex flex-col flex-1 bg-gray-200 rounded-xl p-5  gap-4">
-                    { testCases.map((testCase:any,id)=>
-                        (
-                        <>
-                        <div className="flex h-10 p-2 bg-white pointer text-black">
-                            <div>Case {id}</div>
-                      </div>
-                        <div className="text-start text-xs"> 
-                              <div>Input: {testCase?.input}</div>
-                              <div>Expected Output:{testCase?.expected_output}</div>
+                
+                {/* ----------------------- visible testcase section  -------------------------------*/}
+                <div className="flex flex-col flex-1 min-h-0 bg-gray-100 rounded-xl p-5">
+                  <div className="flex-1 min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
+                    { testCases.map((testCase:any,id)=>(
+                        <div className=" border-b border-gray-300 pb-4 mb-4" key={id}>
+                            <div className="p-2 mb-4 pointer text-black text-start bg-slate-50 border border-slate-300 rounded-xl shadow-md">
+                                <div>Case {id}</div>
+                          </div>
+                            <div className="text-start text-sm text-black font-normal flex flex-col gap-2 hover:shadow-lg transition"> 
+                                  <div>Input: {testCase?.input}</div>
+                                  <div>Expected Output: {testCase?.expected_output}</div>
+                            </div>
+                            {showMessages &&<div className="text-sm text-gray-600 text-start pt-[8px]"> 
+                                  <span className={getVisibleTestcaseResult(testCase?.id)?.theme}>{getVisibleTestcaseResult(testCase?.id)?.message}</span>
+                            </div>}
                         </div>
-                        {showMessages &&<div className="text-sm text-gray-600 text-start"> 
-                              <span className={getVisibleTestcaseResult(testCase?.id)?.theme}>{getVisibleTestcaseResult(testCase?.id)?.message}</span>
-                        </div>}
-                        
-                      </>
                       ))}
-                      {showMessages&&<div className="text-sm text-green-500 mt-1 text-start">Passed: {passedNonHiddenTestcases?.length} / {nonHiddenTestCaseResults?.length}</div>}
-                      {/* hidden testcase section */}
-                      {showMessages&&<div >
-                          <div className="font-semibold flex h-10 p-2 bg-white pointer text-black mb-4">
-                              🔒 Hidden Testcases
-                          </div>
-
-                          <div className={`text-sm text-gray-600 mt-1 text-start ${hiddenTestcaseResults?.theme}`}>
-                            {hiddenTestcaseResults?.message}
-                          </div>
-                        </div>}
-
-                      {showMessages&&
-                          <button className="font-semibold bg-[#007FFF] h-10 p-2 text-white cursor-pointer rounded-xl" onClick={handleAnalysisModal}>
-                              ✨ Analyze Complexity
-                          </button>
-                        }
-
+                    {/* Passed summary and hidden testcases inside scrollable list */}
+                    {showMessages&&<div className="text-sm text-green-500 mb-4 text-start">Passed: {passedNonHiddenTestcases?.length} / {nonHiddenTestCaseResults?.length}</div>}
+                    {showMessages&&<div >
+                        <div className="font-semibold flex h-10 p-2 bg-white pointer text-black mb-4">
+                            🔒 Hidden Testcases
+                        </div>
+                        <div className={`text-sm text-gray-600 mb-4  text-start ${hiddenTestcaseResults?.theme}`}>
+                          {hiddenTestcaseResults?.message}
+                        </div>
+                      </div>}
+                  </div>
+                  {showMessages&&
+                      <button className="font-semibold bg-[#007FFF] h-10 p-2 text-white cursor-pointer rounded-xl mt-4 hover:bg-[#0066CC] transition-all duration-200 shadow-sm hover:shadow-md" onClick={handleAnalysisModal}>
+                          ✨ Analyze Complexity
+                      </button>
+                  }
                 </div>
             </div>
   )

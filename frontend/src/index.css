@@ -1,3 +1,17 @@
+/* Transparent scrollbar for testcase list */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thumb-transparent::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thumb-transparent::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
 
 @import "tailwindcss";
 :root {

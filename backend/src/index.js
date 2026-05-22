@@ -28,12 +28,18 @@ app.get("/api/questions",async (req,res)=>{
    res.json(questions.rows)
 })
 //get all testcases
-app.get("/api/testcases",async (req,res)=>{
-   const testcases= await pool.query("SELECT * FROM test_cases")
+// app.get("/api/testcases",async (req,res)=>{
+//    const testcases= await pool.query("SELECT * FROM test_cases")
+//    res.json(testcases.rows)
+// })
+
+//get testcases according to question id
+app.post("/api/testcases",async (req,res)=>{
+   const { questionId} = req.body;
+   const testcases= await pool.query(`SELECT * FROM test_cases   WHERE question_id = $1`,[questionId])
    res.json(testcases.rows)
 })
-
-//test user submitted code against the available testcases
+//test the code submitted by user against the available testcases for the question
 app.post("/api/testcode", async (req, res) => {
 
    const { questionId, code } = req.body;
@@ -51,7 +57,6 @@ app.post("/api/testcode", async (req, res) => {
        WHERE id = $1`,
       [questionId]
    );
-
    const testCasesOfSelectedQuestion = testcases.rows;
    const functionNameOfSelectedQuestion =
       functionName.rows[0].function_name;
@@ -103,35 +108,43 @@ app.post("/api/testcode", async (req, res) => {
 
 
 app.post("/api/ai-test", async (req, res) => {
-  const {code}=req.body;
-  console.log("-----",code)
-  const completion = await client.chat.completions.create({
-  model: "openrouter/free",
-   messages: [
-   {
-      role: "system",
-      content: "You are a DSA interviewer who analyzes code complexity",
-   },
-   {
-      role: "user",
-      content: `
-               Analyze this code.
-               Return EXACTLY in this format:
-               Time Complexity:
+   try {
+      const {code}=req.body;
+      const completion = await client.chat.completions.create({
+      model: "openrouter/free",
+         messages: [
+         {
+            role: "system",
+            content: "You are a DSA interviewer who analyzes code complexity",
+         },
+         {
+            role: "user",
+            content: `
+                     Analyze this code.
+                     Return EXACTLY in this format:
+                     Time Complexity:
 
-               Space Complexity:
+                     Space Complexity:
 
-               Explanation:
+                     Explanation:
 
-               Do not include the code again.
-               Code:
-               ${code}
-               `
-                  },
-   ],
-  });
+                     Do not include the code again.
+                     Code:
+                     ${code}
+                     `
+                        },
+         ],
+      });
 
-  res.json({
-   analysis: completion.choices[0].message.content
-});
+      res.json({
+         analysis: completion.choices[0].message.content
+      });
+         } catch (error) {
+
+      console.log(error);
+
+      res.status(500).json({
+         error: "AI request failed"
+      });
+   }
 });

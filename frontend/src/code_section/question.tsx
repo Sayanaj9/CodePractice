@@ -5,7 +5,7 @@ function Question({questionSelectedByUser}:QuestionProps) {
 
     <div className="flex flex-col h-full">
         <div className="text-black h-10 text-xl">Description</div>
-        <div className="flex-1 bg-gray-200 rounded-xl p-5">
+        <div className="flex-1 bg-gray-100 rounded-xl p-5 text-start text-black text-sm font-normal ">
           {questionSelectedByUser?.description}
         </div>
             
