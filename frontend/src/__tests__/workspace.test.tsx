@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AnalysisModal from "../modal/analysis_modal";
-import WorkSpace from "../workspace/workspace";
-import Testcase from "../workspace/testcase_screen";
+import reducers, {selectedQuestion,setTypedCode} from "../store/reducers";
+import type { QuestionType,TestCaseType } from "../store/reducers";
 import React from "react";
 
-describe("Analysis Modal", () => {
+describe("Analysis Modal", () => {  
 
    //Modal close button
     it("calls onClose when close btn is clicked", () => {
@@ -39,4 +39,63 @@ describe("Analysis Modal", () => {
    });
 
 });
+
+describe("questions reducer", () => {
+
+  it("sets selected question", () => {
+
+    const initialState = {
+       questions: [] as QuestionType[],
+        questionSelected: null as QuestionType | null,
+        loading: false,
+        error: null as string | null,
+        runBtnActive:false
+  
+    };
+
+    const result = reducers.questionsList(
+      initialState,
+      selectedQuestion({
+            id: 3,
+            title: "Trapping Rain Water",
+            description: "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
+            difficulty: "Difficult",
+            category_id: 1,
+            function_name: "trap",
+            starter_code: "function trap(height) {}",
+            // category_name: "Arrays"
+      })
+    );
+
+    expect(result.questionSelected?.title)
+   .toBe("Trapping Rain Water");
+
+  });
+
+});
+
+describe("testcode reducer", () => {
+
+  it("sets typed code", () => {
+
+    const  initialState={
+        typedCode: "",
+        testCodeResults: [] as TestCaseType [],
+        runBtnActive:false,
+        loading: false,
+        error: null as string | null,
+    }
+
+    const result = reducers.testcode(
+      initialState,
+      setTypedCode("function trap(height) {}")
+    );
+
+    expect(result.typedCode).toBe("function trap(height) {}");
+
+  });
+
+});
+
+
 
