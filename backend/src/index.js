@@ -24,14 +24,16 @@ app.get("/api/categories",async (req,res)=>{
 })
 //get all questions
 app.get("/api/questions",async (req,res)=>{
-   const questions= await pool.query("SELECT * FROM questions")
+   const questions= await pool.query(`
+    SELECT
+      questions.*,
+      categories.name AS category
+    FROM questions
+    JOIN categories
+    ON questions.category_id = categories.id
+  `)
    res.json(questions.rows)
 })
-//get all testcases
-// app.get("/api/testcases",async (req,res)=>{
-//    const testcases= await pool.query("SELECT * FROM test_cases")
-//    res.json(testcases.rows)
-// })
 
 //get testcases according to question id
 app.post("/api/testcases",async (req,res)=>{

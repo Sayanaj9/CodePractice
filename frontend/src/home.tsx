@@ -20,7 +20,7 @@ const navigate=useNavigate()
     dispatch(selectedQuestion(question))
     navigate("/editor")
   }
-  
+  console.log({allQuestionList})
   return (
     <div className="h-screen p-4">
         <div className="h-20 bg-[#1F93CC] flex flex-col items-center justify-center mb-4">
@@ -42,7 +42,7 @@ const navigate=useNavigate()
             <tr  className="hover:bg-gray-50 cursor-pointer" onClick={()=>handleQuestionSelection(question)}>
               <td className="border border-gray-300 p-4 text-black text-start ">{question?.description}</td>
               <td className="border border-gray-300 p-4 text-black text-start">{question?.difficulty}</td>
-              <td className="border border-gray-300 p-4 text-black text-start">{question?.category_name}</td>
+              <td className="border border-gray-300 p-4 text-black text-start">{question?.category}</td>
             </tr>
            ))} 
         </tbody>
