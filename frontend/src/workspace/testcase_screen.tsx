@@ -13,7 +13,7 @@ function Testcase() {
   const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.questionSelected)
 const initialCode=questionSelectedByUser?.starter_code;
   useEffect(()=>{
-     fetch('/api/testcases',{
+     fetch(`${import.meta.env.VITE_API_URL}/api/testcases`,{
       method:"POST",
       headers:{
           "Content-Type":"application/json"
@@ -81,7 +81,7 @@ const initialCode=questionSelectedByUser?.starter_code;
                          code=typedCode
               }
       try{
-        const response=await fetch('/api/ai-test',{
+        const response=await fetch(`${import.meta.env.VITE_API_URL}/api/ai-test`,{
         method:"POST",
         headers: {
             "Content-Type": "application/json"

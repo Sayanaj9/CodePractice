@@ -6,7 +6,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 export  const fetchQuestions=createAsyncThunk(
  "questions/fetchQuestions",
  async ()=>{
-    const response=await fetch('/api/questions');
+    const response=await fetch(`${import.meta.env.VITE_API_URL}/api/questions`);
     const data=await response.json()
     return data
  }
@@ -14,7 +14,7 @@ export  const fetchQuestions=createAsyncThunk(
 export  const postTestcode=createAsyncThunk(
  "testcode/postTestcode",
  async (bodyData:any)=>{
-    const response=await fetch('/api/testcode',{
+    const response=await fetch(`${import.meta.env.VITE_API_URL}/api/testcode`,{
          method: "POST",
          headers: {
             "Content-Type": "application/json"
