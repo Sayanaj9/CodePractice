@@ -74,8 +74,6 @@ sequenceDiagram
 
 ---
 
-### Coding Workspace
-
 ## Setup Instructions
 
 ### Prerequisites
@@ -93,7 +91,7 @@ cd CodePractise
 ```sh
 cd backend
 npm install
-# Configure your .env with DB connection and OpenAI API key
+# Configure your .env with DB connection and OpenRouter API key
 npm run dev
 ```
 
