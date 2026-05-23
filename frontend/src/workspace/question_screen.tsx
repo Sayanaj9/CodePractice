@@ -6,13 +6,13 @@ function QuestionScreen({questionSelectedByUser}:QuestionProps) {
     <div className="flex flex-col h-full">
         <div className="text-black h-10 text-xl">Description</div>
         <div className="flex-1 bg-gray-100 rounded-xl p-5 text-start text-black text-sm font-normal overflow-y-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
-                    <div className="font-semibold mb-2">{questionSelectedByUser?.description}</div>
+                    <div className="font-semibold text-gray-900 mb-2">{questionSelectedByUser?.description}</div>
                     <div className="whitespace-pre-line mb-2">
-                          <div className="font-semibold mb-1">Instructions : </div>
+                          <div className="font-semibold text-gray-900">Instructions : </div>
                           <div>{questionSelectedByUser?.instructions} </div>
                       </div>
                       <div className="whitespace-pre-line">
-                          <div className="font-semibold ">Example :</div>
+                          <div className="font-semibold text-gray-900 ">Examples :</div>
                           <div>{questionSelectedByUser?.examples} </div>
                       </div>
           

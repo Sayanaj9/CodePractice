@@ -119,14 +119,14 @@ const initialCode=questionSelectedByUser?.starter_code;
                 <AnalysisModal open={openModal} onClose={() => setOpenModal(false)} analysisData={analysis} loader={loader}/>
                 
                 {/* ----------------------- visible testcase section  -------------------------------*/}
-                <div className="flex flex-col flex-1 min-h-0 bg-gray-100 rounded-xl p-5">
+                <div className="flex flex-col flex-1 min-h-0 bg-gray-100 shadow-md border border-gray-200 rounded-xl p-5 ">
                   <div className="flex-1 min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
                     { testCases.map((testCase:any,id)=>(
-                        <div className=" border-b border-gray-300 pb-4 mb-4" key={id}>
-                            <div className="p-2 mb-4 pointer text-black text-start bg-slate-50 border border-slate-300 rounded-xl shadow-md">
+                        <div className=" border-b border-gray-300 pb-4 mb-4 " key={id}>
+                            <div className="p-2 mb-4 pointer text-black text-start bg-slate-100 border border-gray-300 rounded-lg shadow-md">
                                 <div>Case {id}</div>
                           </div>
-                            <div className="text-start text-sm text-black font-normal flex flex-col gap-2 hover:shadow-lg transition"> 
+                            <div className="text-start text-sm text-black font-normal flex flex-col gap-2 "> 
                                   <div>Input: {testCase?.input}</div>
                                   <div>Expected Output: {testCase?.expected_output}</div>
                             </div>
@@ -138,7 +138,7 @@ const initialCode=questionSelectedByUser?.starter_code;
                     {/* Passed summary and hidden testcases inside scrollable list */}
                     {showMessages&&<div className="text-sm text-green-500 mb-4 text-start">Passed: {passedNonHiddenTestcases?.length} / {nonHiddenTestCaseResults?.length}</div>}
                     {showMessages&&<div >
-                        <div className="font-semibold flex h-10 p-2 bg-white pointer text-black mb-4">
+                        <div className="p-2 mb-4 pointer text-black text-start bg-slate-100 border border-gray-300 rounded-lg shadow-md">
                             🔒 Hidden Testcases
                         </div>
                         <div className={`text-sm text-gray-600 mb-4  text-start ${hiddenTestcaseResults?.theme}`}>

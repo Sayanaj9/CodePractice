@@ -20,29 +20,26 @@ const navigate=useNavigate()
     dispatch(selectedQuestion(question))
     navigate("/editor")
   }
-  console.log({allQuestionList})
   return (
     <div className="h-screen p-4">
-        <div className="h-20 bg-[#1F93CC] flex flex-col items-center justify-center mb-4">
+        <div className="h-20 bg-slate-800 flex flex-col items-center justify-center mb-4 rounded-2xl">
 
             <div className='text-white p-2 text-3xl font-bold '>CodePractice</div> 
         </div>
-      
-
-      <table className="w-full border-collapse border border-gray-300">
+      <table className="w-full border-collapse border border-gray-200 rounded-2xl overflow-hidden">
         <thead>
-          <tr className="bg-[#1F93CC]">
-            <th className="border border-gray-300 p-4 text-left font-semibold text-white">Questions</th>
-            <th className="border border-gray-300 p-4 text-left font-semibold text-white">Difficulty</th>
-            <th className="border border-gray-300 p-4 text-left font-semibold text-white">Category</th>
+          <tr className="bg-slate-800">
+            <th className="border-l border-gray-200 p-4 text-left font-semibold text-white">Questions</th>
+            <th className="border-l border-gray-200 p-4 text-left font-semibold text-white">Difficulty</th>
+            <th className="border-l border-gray-200 p-4 text-left font-semibold text-white">Category</th>
           </tr>
         </thead>
         <tbody>
           {allQuestionList?.map((question: any) => ( 
-            <tr  className="hover:bg-gray-50 cursor-pointer" onClick={()=>handleQuestionSelection(question)}>
-              <td className="border border-gray-300 p-4 font-semibold text-black text-start ">{question?.description}</td>
-              <td className="border border-gray-300 p-4 text-black text-sm font-semibold text-start">{question?.difficulty}</td>
-              <td className="border border-gray-300 p-4 text-black text-sm font-semibold text-start">{question?.category}</td>
+            <tr  className="hover:bg-gray-100 cursor-pointer" onClick={()=>handleQuestionSelection(question)}>
+              <td className="border-b border-gray-200 p-4 py-5 text-gray-800 font-medium text-start ">{question?.description}</td>
+              <td className="border-b border-gray-200 p-4 py-5 text-gray-800 font-medium text-start">{question?.difficulty}</td>
+              <td className="border-b border-gray-200 p-4  py-5 text-gray-800 font-medium text-start">{question?.category}</td>
             </tr>
            ))} 
         </tbody>
