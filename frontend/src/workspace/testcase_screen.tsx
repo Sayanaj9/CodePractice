@@ -20,12 +20,12 @@ const initialCode=questionSelectedByUser?.starter_code;
         },
       body:JSON.stringify({questionId:questionSelectedByUser?.id})
       
-     }).then((res)=>res.json()
+     }).then((res)=>res.json())
      .then((data)=>{
       const availableTestCases=data.filter((test:any)=>!test?.is_hidden)
       setTestCases(availableTestCases)
-    }
-    ))},[])
+    })
+},[])
 
     let passedNonHiddenTestcases=[]
     let nonHiddenTestCaseResults=[]

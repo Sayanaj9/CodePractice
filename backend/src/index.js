@@ -97,7 +97,8 @@ app.post("/api/testcode", async (req, res) => {
             input: parsedInput,
             expectedOutput,
             error: error.message,
-            id,is_hidden,
+             id:testCase.id,
+            is_hidden:testCase?.is_hidden,
             passed: false
          });
 
