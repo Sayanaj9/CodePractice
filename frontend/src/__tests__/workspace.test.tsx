@@ -3,8 +3,7 @@ import "@testing-library/jest-dom";
 import AnalysisModal from "../modal/analysis_modal";
 import reducers, {selectedQuestion,setTypedCode} from "../store/reducers";
 import type { QuestionType,TestCaseType } from "../store/reducers";
-import React from "react";
-
+/// <reference types="@testing-library/jest-dom" />
 describe("Analysis Modal", () => {  
 
    //Modal close button
