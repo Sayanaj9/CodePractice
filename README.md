@@ -23,7 +23,7 @@ Demo Link: https://code-practice-jade.vercel.app/home
 ## Tech Stack
 - **Frontend:** React, TypeScript, Tailwind CSS, Vite, Redux Toolkit, React Router, Monaco Editor
 - **Backend:** Node.js, Express
-- **Database:**PostgreSQL(Neon)
+- **Database:** PostgreSQL(Neon)
 - **AI Integration:** OpenRouter AI API 
 - **Testing:** Jest, React Testing Library
 - **Deployment:** Vercel (Frontend), Render (Backend)
