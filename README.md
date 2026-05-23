@@ -141,6 +141,7 @@ CodePractise/
 
 - Authentication
 - Submission history
+- Search and sort based on question type and difficulty
 
 ---
 

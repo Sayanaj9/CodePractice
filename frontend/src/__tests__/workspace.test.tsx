@@ -62,6 +62,8 @@ describe("questions reducer", () => {
             category_id: 1,
             function_name: "trap",
             starter_code: "function trap(height) {}",
+              instructions:'',
+          examples:''
             // category_name: "Arrays"
       })
     );

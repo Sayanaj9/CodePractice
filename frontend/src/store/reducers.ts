@@ -1,8 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 
-
-
 export  const fetchQuestions=createAsyncThunk(
  "questions/fetchQuestions",
  async ()=>{
@@ -98,6 +96,8 @@ export interface  QuestionType  {
     category_id: number;
     starter_code: string;
     function_name:string;
+    instructions:string;
+    examples:string;
 }
 export interface  TestCaseType  {
     input: number[];

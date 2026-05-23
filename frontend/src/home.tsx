@@ -40,9 +40,9 @@ const navigate=useNavigate()
         <tbody>
           {allQuestionList?.map((question: any) => ( 
             <tr  className="hover:bg-gray-50 cursor-pointer" onClick={()=>handleQuestionSelection(question)}>
-              <td className="border border-gray-300 p-4 text-black text-start ">{question?.description}</td>
-              <td className="border border-gray-300 p-4 text-black text-start">{question?.difficulty}</td>
-              <td className="border border-gray-300 p-4 text-black text-start">{question?.category}</td>
+              <td className="border border-gray-300 p-4 font-semibold text-black text-start ">{question?.description}</td>
+              <td className="border border-gray-300 p-4 text-black text-sm font-semibold text-start">{question?.difficulty}</td>
+              <td className="border border-gray-300 p-4 text-black text-sm font-semibold text-start">{question?.category}</td>
             </tr>
            ))} 
         </tbody>
