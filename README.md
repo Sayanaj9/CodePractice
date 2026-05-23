@@ -12,6 +12,7 @@ A full-stack coding practice platform for solving algorithmic problems, running 
 - Analyze code complexity with AI
 - Responsive, modern UI with Tailwind CSS
 - Backend with Express and PostgreSQL
+- Unit testing with Jest and React Testing Library
 
 ## Tech Stack
 - **Frontend:** React, TypeScript, Tailwind CSS, Vite, Redux Toolkit, React Router, Monaco Editor
@@ -36,6 +37,33 @@ sequenceDiagram
     Backend-->>Frontend: Return results/analysis
     Frontend-->>User: Display results
 ```
+
+---
+
+## Screenshots
+
+### Home Page
+![Home](./screenshots/home.png)
+
+---
+
+### Coding Workspace
+![Workspace](./screenshots/passed_testcases/codesection1.png)
+
+- **Scenario where all testcases including hidden testcases pass**
+![Workspace](./screenshots/passed_testcases/codesection2.png)
+![Workspace](./screenshots/passed_testcases/codesection3.png)
+
+- **Scenario where some testcases fail**
+![Workspace](./screenshots/failed_testcases/codesection1.png)
+![Workspace](./screenshots/failed_testcases/codesection2.png)
+---
+
+### AI Analysis
+![AI Analysis](./screenshots/ai.png)
+
+### Unit Testcases
+![Unit Testcases](./screenshots/unit_testcase.png)
 
 ---
 
