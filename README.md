@@ -48,21 +48,28 @@ sequenceDiagram
 ---
 
 ### Coding Workspace
+
 ![Workspace](./screenshots/passed_testcases/codesection1.png)
 
-- **Scenario where all testcases including hidden testcases pass**
-![Workspace](./screenshots/passed_testcases/codesection2.png)
-![Workspace](./screenshots/passed_testcases/codesection3.png)
+#### Successful Testcase Execution (Including Hidden Testcases)
 
-- **Scenario where some testcases fail**
-![Workspace](./screenshots/failed_testcases/codesection1.png)
-![Workspace](./screenshots/failed_testcases/codesection2.png)
+![Testcase](./screenshots/passed_testcases/codesection2.png)
+
+![Testcase](./screenshots/passed_testcases/codesection3.png)
+
+#### Partial Testcase Failure Scenario
+
+![Testcase](./screenshots/failed_testcases/codesection1.png)
+
+![Testcase](./screenshots/failed_testcases/codesection2.png)
 ---
 
 ### AI Analysis
+
 ![AI Analysis](./screenshots/ai.png)
 
-### Unit Testcases
+### Jest Unit Test Results
+
 ![Unit Testcases](./screenshots/unit_testcase.png)
 
 ---
