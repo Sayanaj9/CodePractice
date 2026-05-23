@@ -4,6 +4,12 @@ A full-stack coding practice platform for solving algorithmic problems, running 
 
 ---
 
+## Live Demo
+
+Demo Link: https://code-practice-jade.vercel.app/home
+
+
+
 ## Features
 - Browse coding questions by category and difficulty
 - View question descriptions and sample testcases
@@ -16,9 +22,11 @@ A full-stack coding practice platform for solving algorithmic problems, running 
 
 ## Tech Stack
 - **Frontend:** React, TypeScript, Tailwind CSS, Vite, Redux Toolkit, React Router, Monaco Editor
-- **Backend:** Node.js, Express, PostgreSQL
+- **Backend:** Node.js, Express
+- **Database:**PostgreSQL(Neon)
 - **AI Integration:** OpenRouter AI API 
 - **Testing:** Jest, React Testing Library
+- **Deployment:** Vercel (Frontend), Render (Backend)
 
 ## Architecture Diagram
 
@@ -126,6 +134,13 @@ CodePractise/
 │   └── ...
 └── README.md
 ```
+
+---
+
+## Future Improvements
+
+- Authentication
+- Submission history
 
 ---
 
