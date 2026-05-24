@@ -21,7 +21,7 @@ const navigate=useNavigate()
     navigate("/editor")
   }
   return (
-    <div className="h-screen p-4">
+    <div className="min-h-screen p-4">
         <div className="h-20 bg-slate-800 flex flex-col items-center justify-center mb-4 rounded-2xl">
 
             <div className='text-white p-2 text-3xl font-bold '>CodePractice</div> 
