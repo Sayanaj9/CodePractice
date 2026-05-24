@@ -2,14 +2,19 @@ import QuestionScreen from "./question_screen"
 import Testcase from "./testcase_screen"
 import EditorScreen from "./editor_screen"
 import { useAppSelector,useAppDispatch } from "../store/hooks"
-import { postTestcode,resetTestCodeResults } from "../store/reducers"
+import { postTestcode,resetTestCodeResults, setLoader } from "../store/reducers"
 import { useNavigate } from "react-router-dom";
+import {  useState } from "react"
 
 function WorkSpace() {
  const dispatch=useAppDispatch()
  const userTypedCode = useAppSelector(
     (state) => state.testcode.typedCode
   )
+ const loader = useAppSelector(
+    (state) => state.testcode.loader
+  )
+  
 const navigate=useNavigate()
 
 const questionSelectedByUser=useAppSelector((state)=>state?.questionsList?.questionSelected)
@@ -17,11 +22,12 @@ const initialCode=questionSelectedByUser?.starter_code;
 const questionId=questionSelectedByUser?.id;
 
 const handleRunBtn=()=>{
+       dispatch(setLoader())
         if(userTypedCode===''){
-                    dispatch(postTestcode({questionId:questionId,code:initialCode}))
+                    dispatch(postTestcode({questionId:questionId,code:initialCode})).then(()=>dispatch(setLoader()))
         }
         else{
-                    dispatch(postTestcode({questionId:questionId,code:userTypedCode}))
+                    dispatch(postTestcode({questionId:questionId,code:userTypedCode})).then(()=>dispatch(setLoader()))
         }
 }
 const handleReturnToHomeBtn=()=>{
@@ -36,9 +42,10 @@ const handleReturnToHomeBtn=()=>{
 
             <div className='text-white text-3xl font-bold'>CodePractice</div> 
             <div className="flex gap-4">
-               <button data-testid="run_btn" className="px-5 py-2 rounded-xl bg-gray-200  font-medium text-gray-900 shadow hover:bg-gray-100 hover:scale-105 transition duration-200" onClick={handleReturnToHomeBtn}>Return to Home</button>
-               <button data-testid="run_btn" className="px-6 py-2 rounded-xl bg-blue-500 text-white font-medium shadow-sm hover:bg-blue-600 hover:scale-105 transition duration-200" onClick={handleRunBtn}>
-                    ▶ Run</button>
+               <button data-testid="run_btn" className="px-5 py-2 cursor-pointer rounded-xl bg-gray-200  font-medium text-gray-900 shadow hover:bg-gray-100 hover:scale-105 transition duration-200" onClick={handleReturnToHomeBtn}>Return to Home</button>
+               <button data-testid="run_btn" className={`px-6 py-2 rounded-xl bg-blue-500 text-white font-medium shadow-sm hover:bg-blue-600 hover:scale-105 transition duration-200 ${loader ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
+              disabled={loader}    onClick={handleRunBtn}>
+                  {loader? "Running.." : '▶ Run'}</button>
 
             </div>
         </div>
