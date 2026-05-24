@@ -85,6 +85,7 @@ describe("testcode reducer", () => {
         runBtnActive:false,
         loading: false,
         error: null as string | null,
+         loader:false 
     }
 
     const result = reducers.testcode(
