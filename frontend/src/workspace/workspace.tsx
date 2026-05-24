@@ -2,7 +2,7 @@ import QuestionScreen from "./question_screen"
 import Testcase from "./testcase_screen"
 import EditorScreen from "./editor_screen"
 import { useAppSelector,useAppDispatch } from "../store/hooks"
-import { postTestcode } from "../store/reducers"
+import { postTestcode,resetTestCodeResults } from "../store/reducers"
 import { useNavigate } from "react-router-dom";
 
 function WorkSpace() {
@@ -25,6 +25,7 @@ const handleRunBtn=()=>{
         }
 }
 const handleReturnToHomeBtn=()=>{
+     dispatch(resetTestCodeResults([]))
      navigate("/")
 }
   return (

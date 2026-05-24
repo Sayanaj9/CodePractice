@@ -39,8 +39,7 @@ const initialCode=questionSelectedByUser?.starter_code;
                       return{
                           message:"Passed",
                           theme:'text-green-500'
-                    }
-                      
+                    }                
               }
               else{
                  return{
@@ -81,28 +80,25 @@ const initialCode=questionSelectedByUser?.starter_code;
                          code=typedCode
               }
       try{
-        const response=await fetch(`${import.meta.env.VITE_API_URL}/api/ai-test`,{
-        method:"POST",
-        headers: {
-            "Content-Type": "application/json"
-         },
-            body:JSON.stringify({code})
-          })
-          if (!response.ok) {
-                throw new Error("AI request failed");
-            }
-          const data=await response.json();
-                setLoader(false)
-
-          setAnalysis(data?.analysis);
+            const response=await fetch(`${import.meta.env.VITE_API_URL}/api/ai-test`,{
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body:JSON.stringify({code})
+              })
+              if (!response.ok) {
+                    throw new Error("AI request failed");
+              }
+              const data=await response.json();
+              setLoader(false)
+              setAnalysis(data?.analysis);
       }
-      catch (error) {
-            setAnalysis("Failed to analyze code.")  
-        }
+        catch (error) {
+              setAnalysis("Failed to analyze code.")  
+          }
         finally {
-
-                    setLoader(false);
-
+               setLoader(false);
       }
     
     }
@@ -147,7 +143,7 @@ const initialCode=questionSelectedByUser?.starter_code;
                       </div>}
                   </div>
                   {showMessages&&
-                      <button data-testid="analyze_modal_tigger_btn" className="font-semibold bg-[#007FFF] h-10 p-2 text-white cursor-pointer rounded-xl mt-4 hover:bg-[#0066CC] transition-all duration-200 shadow-sm hover:shadow-md" onClick={handleAnalysisModal}>
+                      <button data-testid="analyze_modal_tigger_btn" className="px-6 py-2 rounded-xl bg-blue-500 text-white font-medium shadow-sm hover:bg-blue-600 hover:scale-105 transition duration-200" onClick={handleAnalysisModal}>
                           ✨ Analyze Complexity
                       </button>
                   }

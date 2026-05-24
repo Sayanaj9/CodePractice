@@ -69,6 +69,9 @@ const testcodeSlice=createSlice({
         },
         setTypedCode:(state,action)=>{
             state.typedCode=action.payload;
+        },
+        resetTestCodeResults:(state,action)=>{
+            state.testCodeResults=action.payload;
         }
     },
      extraReducers: (builder) => {
@@ -87,7 +90,7 @@ const testcodeSlice=createSlice({
 })
 
 export const {selectedQuestion}=questionSlice.actions
-export const {isRunBtnClicked,setTypedCode}=testcodeSlice.actions
+export const {isRunBtnClicked,setTypedCode,resetTestCodeResults}=testcodeSlice.actions
 export interface  QuestionType  {
     id: number;
     title: string;
