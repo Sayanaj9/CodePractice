@@ -147,5 +147,5 @@ CodePractise/
 
 ## Author
 Sayana Joy
-https://github.com/Sayanaj9
-https://sayanajoy-portfolio.vercel.app/
+- GitHub: https://github.com/Sayanaj9     
+- Portfolio: https://sayanajoy-portfolio.vercel.app/
