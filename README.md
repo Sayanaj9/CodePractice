@@ -8,6 +8,7 @@ A full-stack coding practice platform for solving algorithmic problems, running 
 
 Demo Link: https://code-practice-jade.vercel.app/home
 
+#### This application is currently optimized for desktop/laptop screens. Mobile responsiveness is planned for future improvements.
 
 
 ## Features

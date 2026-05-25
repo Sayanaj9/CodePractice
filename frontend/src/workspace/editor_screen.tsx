@@ -23,9 +23,9 @@ function EditorScreen({questionSelectedByUser}:QuestionProps) {
   }
   return (
 
-<div className="flex flex-col h-full">
+<div className="flex flex-col h-full min-h-0">
         <div className="text-black h-10 text-xl">Editor</div>
-        <div className="flex-1 bg-gray-200 rounded-xl ">
+        <div className="flex-1 min-h-0 overflow-hidden bg-gray-200 rounded-xl">
               <Editor
                   height="100%"
                   options={{
