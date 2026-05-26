@@ -48,7 +48,8 @@ describe("questions reducer", () => {
         questionSelected: null as QuestionType | null,
         loading: false,
         error: null as string | null,
-        runBtnActive:false
+        runBtnActive:false,
+            questionLoader:true
   
     };
 
