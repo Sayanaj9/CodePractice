@@ -30,12 +30,16 @@ const questionSlice=createSlice({
         questionSelected: null as QuestionType | null,
         loading: false,
         error: null as string | null,
-        runBtnActive:false
+        runBtnActive:false,
+        questionLoader:true
     },
     reducers:{
         selectedQuestion:(state,action: PayloadAction<QuestionType>)=>{
             state.questionSelected=action.payload; 
 
+        },
+        setQuestionLoader:(state)=>{
+            state.questionLoader=!state.questionLoader
         }
     },
      extraReducers: (builder) => {
@@ -93,7 +97,7 @@ const testcodeSlice=createSlice({
   },
 })
 
-export const {selectedQuestion}=questionSlice.actions
+export const {selectedQuestion,setQuestionLoader}=questionSlice.actions
 export const {isRunBtnClicked,setTypedCode,resetTestCodeResults,setLoader}=testcodeSlice.actions
 export interface  QuestionType  {
     id: number;
